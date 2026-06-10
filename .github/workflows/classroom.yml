@@ -431,8 +431,7 @@ jobs:
           command: >
             bash -c '
             [ ! -f "fleet_ws/Dockerfile" ] && { echo "MISSING_DOCKERFILE"; exit 0; };
-            cd fleet_ws;
-            BUILD_OUTPUT=$(docker build -t drone_fleet_ci_test:latest . 2>&1);
+            BUILD_OUTPUT=$(docker build -f fleet_ws/Dockerfile -t drone_fleet_ci_test:latest . 2>&1);
             STATUS=$?;
             echo "$BUILD_OUTPUT" | tail -10;
             if [ $STATUS -eq 0 ]; then
